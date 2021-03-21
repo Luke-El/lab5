@@ -1,0 +1,9 @@
+<div *ngIf="hasContent()" id="images">
+  <img
+    class="image"
+    *ngFor="let image of getImages()"
+    src="{{ image.url }}"
+    alt="{{ image.alt }}"
+  />
+</div>
+<p *ngIf="isLogin() && !hasContent()" (click)="print()" id="text">{{ text }}</p>

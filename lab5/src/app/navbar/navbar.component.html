@@ -1,0 +1,29 @@
+<div class="nav">
+  <a class="logo" (click)="refresh()">Image Finder</a>
+  <div class="topnav">
+    <a
+      class="nav-link disabled"
+      *ngFor="let topic of topics"
+      (click)="getImages($event)"
+      >{{ topic }}</a
+    >
+
+    <!-- <div class="search_bar">
+      <input
+        id="search-bar"
+        type="search"
+        placeholder="Enter Image Keyword"
+        aria-label="Search"
+        (change)="updateSearch($event)"
+      />
+      <button
+        class="bar"
+        (click)="searchImages($event)"
+        id="search-submit"
+        type="submit"
+      >
+        Search
+      </button>
+    </div> -->
+  </div>
+</div>

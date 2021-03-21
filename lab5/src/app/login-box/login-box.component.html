@@ -1,0 +1,16 @@
+<div id="form-userid" *ngIf="!isLogin()">
+  <div id="container">
+    <div id="hidden" *ngIf="!isLogin()"></div>
+    <div id="box">
+      <span
+        >Username：<input
+          type="text"
+          value="{{ userName }}"
+          id="userid"
+          placeholder="Enter Username"
+          (change)="name($event)"
+      /></span>
+      <button id="submit" type="submit" (click)="onLogin()">Submit</button>
+    </div>
+  </div>
+</div>
