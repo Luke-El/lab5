@@ -176,7 +176,8 @@ const storeETL = async (catergory) => {
         };
       });
       allImages = allImages.concat(pexelsList);
-      return allImages;
+      console.log(allImages);
+      return allImages
     }
   );
 };
