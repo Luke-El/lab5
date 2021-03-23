@@ -1,18 +1,11 @@
 <div class="nav">
   <a class="logo" (click)="refresh()">Image Finder</a>
   <div class="topnav">
-    <a
-      class="nav-link disabled"
-      *ngFor="let topic of topics"
-      (click)="getImages($event)"
-      >{{ topic }}</a
-    >
-
-    <!-- <div class="search_bar">
+    <div class="search_bar">
       <input
         id="search-bar"
         type="search"
-        placeholder="Enter Image Keyword"
+        placeholder="Enter Image Catergory"
         aria-label="Search"
         (change)="updateSearch($event)"
       />
@@ -24,6 +17,23 @@
       >
         Search
       </button>
-    </div> -->
+    </div>
+    <div class="dropdown">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Delete Catergory
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div>
   </div>
 </div>

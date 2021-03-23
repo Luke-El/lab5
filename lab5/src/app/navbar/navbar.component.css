@@ -8,10 +8,19 @@
   padding: 14px 16px;
   font-size: 30px;
   cursor: pointer;
+  width: 50%;
+}
+
+.dropdown {
+  z-index: 100;
 }
 
 .topnav {
   margin-top: 1.5px;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
 }
 .topnav a {
   font-family: "Stick", sans-serif;
@@ -60,51 +69,53 @@
 } */
 
 input {
-  background-color:#9cddceb6;
+  background-color: #9cddceb6;
   color: rgb(32, 32, 32);
   padding: 12px 22px;
   border-radius: 7px;
 }
 
-button{
-  background:#1AAB8A;
-  color:#fff;
-  border:none;
-  position:relative;
-  height:50px;
-  font-size:15px;
+button {
+  background: #1aab8a;
+  color: #fff;
+  border: none;
+  position: relative;
+  height: 50px;
+  font-size: 15px;
   padding: 14px 20px;
-  cursor:pointer;
+  cursor: pointer;
   border-radius: 15px;
   margin-left: 10px;
-  transition:800ms ease all;
-  outline:none;
+  transition: 800ms ease all;
+  outline: none;
 }
 
-button:hover{
-  background:#fff;
-  color:#1AAB8A;
+button:hover {
+  background: #fff;
+  color: #1aab8a;
 }
 
-button:before,button:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background: #1AAB8A;
-  transition:400ms ease all;
+button:before,
+button:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  background: #1aab8a;
+  transition: 400ms ease all;
 }
 
-button:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
+button:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
 }
 
-button:hover:before,button:hover:after{
-  width:100%;
-  transition:800ms ease all;
+button:hover:before,
+button:hover:after {
+  width: 100%;
+  transition: 800ms ease all;
 }
