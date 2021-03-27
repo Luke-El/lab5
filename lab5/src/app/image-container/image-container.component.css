@@ -21,3 +21,25 @@ p {
   margin-right: auto;
   width: 75%;
 }
+
+.topics {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: #3882f1;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.topics a {
+  padding: 1rem;
+  color: white;
+}
+
+.topics a:hover {
+  background-color: rgb(236, 105, 17);
+  cursor: pointer;
+  border-radius: 11px;
+}

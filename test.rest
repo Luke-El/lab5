@@ -1,0 +1,26 @@
+# POST  http://localhost:3000/users/7/images 
+# content-type: application/json
+
+# {
+#     "catergory": "testing"
+# }
+
+# GET http://localhost:3000/users/7/categories
+
+# GET http://localhost:3000/users/7/images/tarantula
+
+# DELETE   http://localhost:3000/users/7/images 
+# content-type: application/json
+
+# {
+#     "catergory": "testing"
+# }
+
+# PUT    http://localhost:3000/users/7/images 
+# content-type: application/json
+
+# {
+#     "old_catergory": "l",
+#     "new_catergory": "bug"
+# }
+

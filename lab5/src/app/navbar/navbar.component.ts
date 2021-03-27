@@ -17,26 +17,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  topics: Array<string> = [
-    'City',
-    'Beach',
-    'Nature',
-    'Animal',
-    'Rainforest',
-    'Lake',
-    'Ocean',
-    'Wilderness',
-    'Trees',
-    'Woods',
-    'Pasture',
-    'Trail',
-    'Mountain',
-    'Canyon',
-    'Feild',
-    'Stream',
-    'Sky',
-  ];
-
   search: string = '';
 
   updateSearch = (e: any) => {
@@ -77,6 +57,22 @@ export class NavbarComponent implements OnInit {
               return { url: result.urls.small, alt: result.alt_description };
             }
           );
+        },
+        (err) => {
+          console.error('Did not work', err);
+        }
+      );
+  }
+
+  addData() {
+    console.log(this.search);
+    const userId = this.appContentService.userId;
+    this.http
+      .post<any>(`/users/${userId}/images`, { catergory: this.search })
+      .subscribe(
+        (data) => {
+          this.appContentService.topics = data.categories;
+          console.log(data.categories);
         },
         (err) => {
           console.error('Did not work', err);

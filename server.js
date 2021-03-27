@@ -6,9 +6,7 @@ var bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const app = express();
 const port = 3000;
-
-var allImages = [];
-
+var allCatergories = [];
 const MongoClient = require("mongodb").MongoClient;
 const uri =
   "mongodb+srv://dbUser:APjb6P3m9kb7@lab5.q5ytw.mongodb.net/DBL5?retryWrites=true&w=majority";
@@ -46,48 +44,57 @@ const serverApi = unsplash.createApi({
   //...other fetch options
 });
 
-app.get("/users/:userid/images/:catergory", (req, res) => {
+app.get("/users/:userid/images/:catergory", async (req, res) => {
   console.log(req.params);
-  insertDatatoDB();
-  // serverApi.search
-  //   .getPhotos({
-  //     query: req.params.catergory,
-  //     page: 1,
-  //     perPage: 12,
-  //     orientation: "landscape",
-  //   })
-  //   .then((data) => {
-  //     res.status(200).json(data);
-  //   });
+  const collection = client.db("DBL5").collection("Lab5Data");
+  const catergory = req.params.catergory;
+  const document = await collection.findOne({ catergory: catergory });
+
+  var imagesToFront = [];
+  document.images.forEach((img) => {
+    const number = Math.floor(Math.random() * 108);
+    imagesToFront.push(document.images[number]);
+  });
+  res.status(200).json({ images: imagesToFront.slice(0, 12) });
+});
+
+app.get("/users/categories", (req, res) => {
+  const collection = client.db("DBL5").collection("Lab5Data");
+
+  const cursor = collection.find();
+  cursor.toArray().then((data) => {
+    allCatergories = [];
+    for (var i = 0; i < data.length; i++) {
+      allCatergories.push(data[i].catergory);
+    }
+    res.status(203).json({ categories: allCatergories });
+  });
 });
 
 app.post("/users/:userid/images", (req, res) => {
-  console.log(req.params);
-  console.log(req.body);
-  var data = req.body;
-  serverApi.search
-    .getPhotos({
-      query: data.catergory,
-      page: 1,
-      perPage: 12,
-      orientation: "landscape",
-    })
-    .then((data) => {
-      res.status(200).json(data);
-    });
+  createImages(req.body.catergory, res);
 });
 
-app.put("/users/:userid/images", (req, res) => {
-  res.send("Hello world!!!");
-  console.log(req);
+app.put("/users/:userid/images", async (req, res) => {
+  const collection = client.db("DBL5").collection("Lab5Data");
+  const old_catergory = req.body.old_catergory;
+  const new_catergory = req.body.new_catergory;
+
+  await collection.deleteOne({ catergory: old_catergory });
+  createImages(new_catergory, res);
 });
 
-app.delete("/users/:userid/images", (req, res) => {
-  res.send("Hello world!!!");
-  console.log(req);
+app.delete("/users/:userid/images", async (req, res) => {
+  const collection = client.db("DBL5").collection("Lab5Data");
+  const catergory = req.body.catergory;
+
+  await collection.deleteOne({ catergory: catergory });
+
+  res.status(203).json({ msg: `You Have Deleted the ${catergory} catergory` });
 });
 
-const storeETL = async (catergory) => {
+const createImages = async (catergory, res) => {
+  var allImages = [];
   // unsplash
   const unsplashPromise = new Promise((resolve, reject) => {
     serverApi.search
@@ -140,79 +147,49 @@ const storeETL = async (catergory) => {
         if (!error && response.statusCode == 200) {
           var results = JSON.parse(body);
           resolve(results.photos);
-          // var pexelsList = results.photos.map((result) => {
-          //   return {
-          //     url: result.src.landscape,
-          //     alt: result.id.toString(),
-          //   };
-          // });
-          // allImages = allImages.concat(pexelsList);
-          // return allImages;
         }
         reject(error);
       }
     );
   });
 
-  Promise.all([unsplashPromise, pixabayPromise, pexelsPromise]).then(
-    (values) => {
-      //Unsplash Images
-      var unsplashList = values[0].map((result) => {
-        return { url: result.urls.small, alt: result.alt_description };
-      });
-      allImages = allImages.concat(unsplashList);
+  const values = await Promise.all([
+    unsplashPromise,
+    pixabayPromise,
+    pexelsPromise,
+  ]);
+  //Unsplash Images
+  var unsplashList = values[0].map((result) => {
+    return { url: result.urls.small, alt: result.alt_description };
+  });
+  allImages = allImages.concat(unsplashList);
 
-      //Pixabay Images
-      var pixabayList = values[1].map((result) => {
-        return { url: result.webformatURL, alt: result.tags };
-      });
-      allImages = allImages.concat(pixabayList);
+  //Pixabay Images
+  var pixabayList = values[1].map((result) => {
+    return { url: result.webformatURL, alt: result.tags };
+  });
+  allImages = allImages.concat(pixabayList);
 
-      //Pexels Images
-      var pexelsList = values[2].map((result) => {
-        return {
-          url: result.src.landscape,
-          alt: result.id.toString(),
-        };
-      });
-      allImages = allImages.concat(pexelsList);
-      console.log(allImages);
-      return allImages
+  //Pexels Images
+  var pexelsList = values[2].map((result) => {
+    return {
+      url: result.src.landscape,
+      alt: result.id.toString(),
+    };
+  });
+  allImages = allImages.concat(pexelsList);
+  const collection = client.db("DBL5").collection("Lab5Data");
+
+  await collection.insertMany([{ catergory: catergory, images: allImages }]);
+
+  const cursor = collection.find();
+  cursor.toArray().then((data) => {
+    allCatergories = [];
+    for (var i = 0; i < data.length; i++) {
+      allCatergories.push(data[i].catergory);
     }
-  );
-};
-
-const insertDatatoDB = async () => {
-  console.log(client.isConnected());
-  var topics = [
-    "City",
-    "Beach",
-    "Nature",
-    "Animal",
-    "Rainforest",
-    "Lake",
-    "Ocean",
-    "Wilderness",
-    "Trees",
-    "Woods",
-    "Pasture",
-    "Trail",
-    "Mountain",
-    "Canyon",
-    "Feild",
-    "Stream",
-    "Sky",
-  ];
-  storeETL("City");
-
-  //   topics.forEach((topic) => {
-  //     imagesForTopic = storeETL(topic);
-  //     imagesForTopic.then((data) => {
-  //       console.log(data);
-  //     });
-  //     insertDocuments(client.db("DBL5"), topic, imagesForTopic);
-  //     // console.log(imagesForTopic);
-  //   });
+    res.status(203).json({ categories: allCatergories });
+  });
 };
 
 app.listen(port, () => {

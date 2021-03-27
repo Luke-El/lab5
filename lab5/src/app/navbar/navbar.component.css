@@ -40,7 +40,7 @@
 }
 
 .nav a.active {
-  background-color: #4caf50;
+  background-color: #3882f1;
   color: white;
 }
 
@@ -69,14 +69,14 @@
 } */
 
 input {
-  background-color: #9cddceb6;
+  background-color: #88b7fd;
   color: rgb(32, 32, 32);
   padding: 12px 22px;
   border-radius: 7px;
 }
 
 button {
-  background: #1aab8a;
+  background-color: #3882f1;
   color: #fff;
   border: none;
   position: relative;
@@ -92,7 +92,7 @@ button {
 
 button:hover {
   background: #fff;
-  color: #1aab8a;
+  color: #3882f1;
 }
 
 button:before,
@@ -103,7 +103,7 @@ button:after {
   right: 0;
   height: 2px;
   width: 0;
-  background: #1aab8a;
+  background: #3882f1;
   transition: 400ms ease all;
 }
 
