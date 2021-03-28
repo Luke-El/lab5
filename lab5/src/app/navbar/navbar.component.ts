@@ -19,8 +19,14 @@ export class NavbarComponent implements OnInit {
 
   search: string = '';
 
+  delete: string = '';
+
   updateSearch = (e: any) => {
     this.search = e.target.value;
+  };
+
+  updateDelete = (e: any) => {
+    this.delete = e.target.value;
   };
 
   refresh(): void {
@@ -81,4 +87,7 @@ export class NavbarComponent implements OnInit {
   }
   getTopics = () => this.appContentService.topics;
 
+  logWord() {
+    console.log(this.search);
+  }
 }
