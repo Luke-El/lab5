@@ -31,7 +31,24 @@ export class ImageContainerComponent implements OnInit {
 
   isLogin = (): boolean => this.appContentService.isLogin;
 
-  getImages = () => this.appContentService.images;
+  getImages(topic: any) {
+    console.log(topic.target.innerText);
+    const userId = this.appContentService.userId;
+    const catergory = topic.target.innerText;
+    this.http.get<any>(`/users/${userId}/images/${catergory}`).subscribe(
+      (data) => {
+        console.log(data.images[0].url);
+        this.appContentService.images = data.images.map((image: any) => {
+          return { url: image.url, alt: image.alt };
+        });
+      },
+      (err) => {
+        console.error('Did not work', err);
+      }
+    );
+  }
+
+  getPics = () => this.appContentService.images;
 
   getTopics = () => this.appContentService.topics;
 

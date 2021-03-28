@@ -2,7 +2,7 @@
   <a
     class="nav-link disabled"
     *ngFor="let topic of getTopics()"
-    (click)="getImages()"
+    (click)="getImages($event)"
     >{{ topic }}</a
   >
 </div>
@@ -10,9 +10,9 @@
 <div *ngIf="hasContent()" id="images">
   <img
     class="image"
-    *ngFor="let image of getImages()"
-    src="{{ image.url }}"
-    alt="{{ image.alt }}"
+    *ngFor="let picture of getPics()"
+    src="{{ picture.url }}"
+    alt="{{ picture.alt }}"
   />
 </div>
 <p *ngIf="isLogin() && !hasContent()" (click)="print()" id="text">{{ text }}</p>

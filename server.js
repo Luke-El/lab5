@@ -140,7 +140,7 @@ const createImages = async (catergory, res) => {
           Authorization:
             "563492ad6f9170000100000120658066d2dc4d93825ccfe61f1fb342",
         },
-        uri: `https://api.pexels.com/v1/search?query=${catergory}&per_page=39`,
+        uri: `https://api.pexels.com/v1/search?query=${catergory}&orientation=landscape&size=small&per_page=39`,
         method: "GET",
       },
       function (error, response, body) {
