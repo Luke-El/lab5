@@ -13,8 +13,28 @@
         Add
       </button>
     </div>
+    <!-- dropdown.component.html
+    <button igxButton="raised" 
+            [igxToggleAction]="dropdown" 
+            [igxDropDownItemNavigation]="dropdown">
+            Delete Catergory
+    </button>
+    <igx-drop-down #dropdown (onOpening)="dropdown.setSelectedItem(0)">
+      <igx-drop-down-item *ngFor="let item of items">
+        {{ item.field }}
+      </igx-drop-down-item>
+    </igx-drop-down> -->
+
     <div class="dropdown">
-      <button
+      <div class="input-group">
+        <select class="custom-select" id="inputGroupSelect04">
+          <option selected>Choose...</option>
+          <option class="dropdown-item" href="#" *ngFor="let topic of getTopics()"> {{topic}}</option>
+        </select>
+      </div>
+    </div>
+
+    <!--   <button
         class="btn btn-secondary dropdown-toggle"
         type="button"
         id="dropdownMenuButton"
@@ -22,13 +42,14 @@
         aria-haspopup="true"
         aria-expanded="false"
       >
-        Delete Catergory
+      Choose Catergory
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item" href="#">Action</a>
-        <a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>
-      </div>
-    </div>
+        <a class="dropdown-item" href="#" *ngFor="let topic of getTopics()"> {{topic}}</a>
+     </div> -->
+      <button>
+        Delete Catergory
+      </button>
+    
   </div>
 </div>

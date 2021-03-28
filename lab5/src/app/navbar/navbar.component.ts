@@ -79,4 +79,6 @@ export class NavbarComponent implements OnInit {
         }
       );
   }
+  getTopics = () => this.appContentService.topics;
+
 }

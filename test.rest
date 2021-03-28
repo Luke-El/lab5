@@ -5,7 +5,7 @@
 #     "catergory": "testing"
 # }
 
-# GET http://localhost:3000/users/7/categories
+GET http://localhost:3000/users/categories
 
 # GET http://localhost:3000/users/7/images/tarantula
 

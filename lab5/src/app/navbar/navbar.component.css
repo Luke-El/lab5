@@ -1,5 +1,4 @@
 .nav {
-  overflow: hidden;
   background-color: rgb(236, 105, 17);
 }
 
@@ -12,8 +11,11 @@
 }
 
 .dropdown {
-  z-index: 100;
+  padding: 14px 16px;
+  width: 30%;
+  z-index: 500;
 }
+
 
 .topnav {
   margin-top: 1.5px;
@@ -25,7 +27,7 @@
 .topnav a {
   font-family: "Stick", sans-serif;
   float: left;
-  color: #f2f2f2;
+  color: black;
   text-align: center;
   padding: 22px 16px;
   text-decoration: none;
@@ -56,17 +58,11 @@
   float: right;
 }
 
-/* .bar {
-  background-color: rgb(17, 243, 119);
-  color: white;
+.bar {
   padding: 14px 20px;
   border-radius: 15px;
   margin-left: 10px;
 }
-
-.bar:hover {
-  background-color: rgb(11, 58, 212);
-} */
 
 input {
   background-color: #88b7fd;
