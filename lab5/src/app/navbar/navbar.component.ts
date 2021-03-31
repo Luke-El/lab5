@@ -27,6 +27,7 @@ export class NavbarComponent implements OnInit {
 
   updateDelete = (e: any) => {
     this.delete = e.target.value;
+    console.log(this.delete);
   };
 
   refresh(): void {
@@ -85,9 +86,33 @@ export class NavbarComponent implements OnInit {
         }
       );
   }
+
+  // removeTopic() {
+  //   this.appContentService.topics.forEach((item, index) => {
+  //     if (item === this.delete) this.appContentService.topics.splice(index, 1);
+  //     console.log(this.appContentService.topics);
+  //   });
+  // }
+
+  // deleteData() {
+  //   console.log(this.search);
+  //   const userId = this.appContentService.userId;
+  //   this.http
+  //     .delete<any>(`/users/${userId}/images`, { catergory: this.delete })
+  //     .subscribe(
+  //       (data) => {
+  //         delete this.appContentService.topics[this.delete];
+  //         console.log(data.categories);
+  //       },
+  //       (err) => {
+  //         console.error('Did not work', err);
+  //       }
+  //     );
+  // }
+
   getTopics = () => this.appContentService.topics;
 
   logWord() {
-    console.log(this.search);
+    console.log(this.delete);
   }
 }

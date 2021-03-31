@@ -16,13 +16,16 @@
 
     <div class="dropdown">
       <div class="input-group">
-        <select class="custom-select" id="inputGroupSelect04">
+        <select
+          (change)="updateDelete($event)"
+          class="custom-select"
+          id="inputGroupSelect04"
+        >
           <option selected>Choose...</option>
           <option
             class="dropdown-item"
             href="#"
             *ngFor="let topic of getTopics()"
-            (change)="updateDelete($event)"
           >
             {{ topic }}
           </option>

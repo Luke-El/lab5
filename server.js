@@ -86,9 +86,9 @@ app.put("/users/:userid/images", async (req, res) => {
 
 app.delete("/users/:userid/images", async (req, res) => {
   const collection = client.db("DBL5").collection("Lab5Data");
-  const catergory = req.body.catergory;
+  const cat = req.body.catergory;
 
-  await collection.deleteOne({ catergory: catergory });
+  await collection.deleteOne({ catergory: cat });
 
   res.status(203).json({ msg: `You Have Deleted the ${catergory} catergory` });
 });
