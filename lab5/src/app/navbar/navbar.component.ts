@@ -21,6 +21,10 @@ export class NavbarComponent implements OnInit {
 
   delete: string = '';
 
+  replaceOld: string = '';
+
+  replaceNew: string = '';
+
   updateSearch = (e: any) => {
     this.search = e.target.value;
   };
@@ -30,9 +34,19 @@ export class NavbarComponent implements OnInit {
     console.log(this.delete);
   };
 
+  updateReplaceOld = (e: any) => {
+    this.replaceOld = e.target.value;
+    console.log(this.replaceOld);
+  };
+
+  updateReplaceNew = (e: any) => {
+    this.replaceNew = e.target.value;
+    console.log(this.replaceNew);
+  };
+
   refresh(): void {
     window.location.reload();
-  }
+  };
 
   getImages(topic: any) {
     console.log(topic.target.innerText);
@@ -86,33 +100,47 @@ export class NavbarComponent implements OnInit {
         }
       );
   }
-
-  // removeTopic() {
-  //   this.appContentService.topics.forEach((item, index) => {
-  //     if (item === this.delete) this.appContentService.topics.splice(index, 1);
-  //     console.log(this.appContentService.topics);
-  //   });
-  // }
-
-  // deleteData() {
-  //   console.log(this.search);
-  //   const userId = this.appContentService.userId;
-  //   this.http
-  //     .delete<any>(`/users/${userId}/images`, { catergory: this.delete })
-  //     .subscribe(
-  //       (data) => {
-  //         delete this.appContentService.topics[this.delete];
-  //         console.log(data.categories);
-  //       },
-  //       (err) => {
-  //         console.error('Did not work', err);
-  //       }
-  //     );
-  // }
-
   getTopics = () => this.appContentService.topics;
 
   logWord() {
+    console.log(this.search);
+  }
+
+  deleteData() {
     console.log(this.delete);
+    const userId = this.appContentService.userId;
+    const catergory = this.delete;
+    const index: number = this.appContentService.topics.indexOf(this.delete, 0);
+    this.http
+      .delete<any>(`/users/${userId}/images/${catergory}`)
+      .subscribe(
+        (data) => {
+          console.log(this.delete);
+          if (index > -1) {
+            this.appContentService.topics.splice(index, 1);
+          }
+          this.appContentService.topics = [... this.appContentService.topics];
+          console.log(this.appContentService.topics);
+        },
+        (err) => {
+          console.error('Could not delete', err);
+        }
+      );
+  }
+
+  replaceData() {
+    console.log(this.replaceOld);
+    const userId = this.appContentService.userId;
+    this.http
+      .put<any>(`/users/${userId}/images`, { old_catergory: this.replaceOld, new_catergory:this.replaceNew})
+      .subscribe(
+        (data) => {
+          this.appContentService.topics = data.categories;
+          console.log(data.categories);
+        },
+        (err) => {
+          console.error('Could not replace', err);
+        }
+      );
   }
 }

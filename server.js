@@ -84,12 +84,12 @@ app.put("/users/:userid/images", async (req, res) => {
   createImages(new_catergory, res);
 });
 
-app.delete("/users/:userid/images", async (req, res) => {
+app.delete("/users/:userid/images/:catergory", async (req, res) => {
   const collection = client.db("DBL5").collection("Lab5Data");
-  const cat = req.body.catergory;
+  const catergory = req.params.catergory;
 
-  await collection.deleteOne({ catergory: cat });
-
+  await collection.deleteOne({ catergory: catergory });
+  
   res.status(203).json({ msg: `You Have Deleted the ${catergory} catergory` });
 });
 
