@@ -16,7 +16,8 @@
 
     <div class="dropdown">
       <div class="input-group">
-        <select 
+        <div class="select-div">
+        <select
           (change)="updateDelete($event)"
           class="custom-select"
           id="inputGroupSelect04"
@@ -31,11 +32,13 @@
           </option>
         </select>
       </div>
-      <button (click)="deleteData()">Delete Catergory</button>
+        <button (click)="deleteData()">Delete Catergory</button>
+      </div>
     </div>
     <div class="dropdown">
       <div class="input-group">
-        <select 
+        <div class="select-div" style="margin-right: 10px;">
+        <select
           (change)="updateReplaceOld($event)"
           class="custom-select"
           id="inputGroupSelect05"
@@ -50,18 +53,17 @@
           </option>
         </select>
       </div>
-        <div>
-          <input
-            id="replace-bar"
-            type="replace"
-            placeholder="Enter Catergory to Replace"
-            aria-label="Replace"
-            (change)="updateReplaceNew($event)"
-          />
-          <button class="bar" (click)="replaceData()" id="replace-submit" type="submit">
-            Replace
-          </button>
-        </div>
+        <input
+        id="replace-bar"
+        type="replace"
+        placeholder="Enter Catergory to Replace"
+        aria-label="Replace"
+        (change)="updateReplaceNew($event)"
+      />
+      <button class="bar" (click)="replaceData()" id="replace-submit" type="submit">
+        Replace
+      </button>
+      </div>
     </div>
   </div>
 </div>

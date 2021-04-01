@@ -11,11 +11,24 @@
 }
 
 .dropdown {
-  padding: 14px 16px;
-  width: 30%;
+  margin-top: 8px;
+  margin-left: 15px;
+  float: right;
   z-index: 500;
+  margin-right: 30px;
 }
 
+.select-div{
+  width: 150px;
+  height: 50px;
+}
+
+.custom-select{
+  background-color: #9488fd;
+  color: rgb(31, 31, 31);
+  height: 100%;
+  border-radius: 7px;
+}
 
 .topnav {
   margin-top: 1.5px;
@@ -56,6 +69,8 @@
   margin-top: 8px;
   margin-left: 15px;
   float: right;
+  margin-right: 30px;
+  height: 50px;
 }
 
 .bar {
@@ -69,6 +84,7 @@ input {
   color: rgb(32, 32, 32);
   padding: 12px 22px;
   border-radius: 7px;
+  width: 230px;
 }
 
 button {
