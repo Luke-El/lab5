@@ -26,3 +26,11 @@ that would fire the PUT request and replace the category. For the backend, to im
 then took in both the old and new categories. First, I used await to make sure that the old category was deleted, then used the createImages() function made by
 Luke to get the images of the new category and put them into the database. Lastly, to show the updated changes in the console and to make sure that Angular
 updated the category list, I reassigned the list of categories and displayed them in the console as well.
+
+
+Dingheng(Fiazori): I mainly worked on frontend and some backend. For frontend, I used unified class solved the layout problem in the navigation bar component and made small changes to make the site looks better. I also fixed the
+search bar display issue(search bar can be interacted when login box is in front of it) by solved the conflict between bootstrap and  angular. For backend, I worked on delete function which allows users select the catergory in a select
+bar and use the DELETE request to delete it from the database. Specifically, I implemented the DELETE in the sever.js. First of all, in the Node i created a connection to the database and then get the category which user request to delete. 
+Then I used“await collection.deleteOne({ catergory: catergory });” to delete the category. I added a deletedata() in the navbar.component.ts. This function take into the category which user selected from the dropdown bar and let variable 
+category equal to the taken in category name. Then I called the DELETE request I wrote in the server.js. 
+
