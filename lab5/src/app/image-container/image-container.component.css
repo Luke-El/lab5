@@ -6,9 +6,11 @@
   margin-top: 1rem;
 }
 
-.image {
+.image img{
   padding: 1rem;
   border-radius: 33px;
+  width: 750px;
+  height: 500px;
 }
 
 p {
