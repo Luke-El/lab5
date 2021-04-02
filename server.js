@@ -72,7 +72,15 @@ app.get("/users/categories", (req, res) => {
 });
 
 app.post("/users/:userid/images", (req, res) => {
-  createImages(req.body.catergory, res);
+  const collection = client.db("DBL5").collection("Lab5Data");
+  const catergory = req.body.catergory;
+  collection.findOne({ catergory: catergory}, function(err, result) {
+    if (err) {console.log("Could not post")};
+    if (result) {console.log("Category already exists!")}
+    else {
+      createImages(req.body.catergory, res);
+    }
+  })
 });
 
 app.put("/users/:userid/images", async (req, res) => {
