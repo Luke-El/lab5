@@ -40,4 +40,5 @@ Eric: I worked on some frontend and backend. For the frontend, since I was going
 list that the user could choose the categories from. Under the list, there was a text box to enter the new category. To the right of the input box, I put a button 
 that would fire the PUT request and replace the category. For the backend, to implement the PUT request, I first created a connection to the collection in Node,
 then took in both the old and new categories. First, I used await to make sure that the old category was deleted, then used the createImages() function made by
-Luke to get the images of the new category and put them into the database.
+Luke to get the images of the new category and put them into the database. Lastly, to show the updated changes in the console and to make sure that Angular
+updated the category list, I reassigned the list of categories and displayed them in the console as well.
