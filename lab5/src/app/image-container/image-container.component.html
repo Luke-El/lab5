@@ -18,4 +18,4 @@
 </div>
 <p *ngIf="isLogin() && !hasContent()" (click)="print()" id="text">{{ text }}</p>
 
-<h2 *ngIf="isLogin() && !hasContent()">No idea what to add? No problem! Click this button</h2>
+<p *ngIf="isLogin() && !hasContent()" id="text">No idea what to add? No problem! Click "Default" button in the nav bar.</p>
