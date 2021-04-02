@@ -100,6 +100,28 @@ export class NavbarComponent implements OnInit {
         }
       );
   }
+
+
+  
+  adddefault() {
+    let defa: string[] = ['tiger', 'cat', 'dog'];
+    for(var index in defa){ 
+      console.log(defa[index]);
+      const userId = this.appContentService.userId;
+      this.http
+        .post<any>(`/users/${userId}/images`, { catergory: defa[index] })
+        .subscribe(
+          (data) => {
+            this.appContentService.topics = data.categories;
+            console.log(data.categories);
+          },
+          (err) => {
+            console.error('Did not work', err);
+          }
+        );
+    }
+  }
+
   getTopics = () => this.appContentService.topics;
 
   logWord() {

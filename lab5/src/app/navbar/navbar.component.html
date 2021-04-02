@@ -14,54 +14,62 @@
       </button>
     </div>
 
-    <div class="dropdown">
+    <div class="search_bar">
       <div class="input-group">
         <div class="select-div">
-        <select
-          (change)="updateDelete($event)"
-          class="custom-select"
-          id="inputGroupSelect04"
-        >
-          <option selected>Choose...</option>
-          <option
-            class="dropdown-item"
-            href="#"
-            *ngFor="let topic of getTopics()"
+          <select
+            (change)="updateDelete($event)"
+            class="custom-select"
+            id="inputGroupSelect04"
           >
-            {{ topic }}
-          </option>
-        </select>
-      </div>
+            <option selected>Choose...</option>
+            <option
+              class="dropdown-item"
+              href="#"
+              *ngFor="let topic of getTopics()"
+            >
+              {{ topic }}
+            </option>
+          </select>
+        </div>
         <button (click)="deleteData()">Delete Catergory</button>
       </div>
     </div>
+<<<<<<< HEAD
+
     <div class="dropdown">
+=======
+    <div class="search_bar">
+>>>>>>> 2ae2dca3a4636df672bd986e1c107ec3b81182a8
       <div class="input-group">
         <div class="select-div" style="margin-right: 10px;">
-        <select
-          (change)="updateReplaceOld($event)"
-          class="custom-select"
-          id="inputGroupSelect05"
-        >
-          <option selected>Choose...</option>
-          <option
-            class="dropdown-item"
-            href="#"
-            *ngFor="let topic of getTopics()"
+          <select
+            (change)="updateReplaceOld($event)"
+            class="custom-select"
+            id="inputGroupSelect05"
           >
-            {{ topic }}
-          </option>
-        </select>
-      </div>
+            <option selected>Choose...</option>
+            <option
+              class="dropdown-item"
+              href="#"
+              *ngFor="let topic of getTopics()"
+            >
+              {{ topic }}
+            </option>
+          </select>
+        </div>
         <input
         id="replace-bar"
         type="replace"
-        placeholder="Enter Catergory to Replace"
+        placeholder="Enter Replace Catergory"
         aria-label="Replace"
         (change)="updateReplaceNew($event)"
       />
       <button class="bar" (click)="replaceData()" id="replace-submit" type="submit">
         Replace
+      </button>
+      <button class="bar" (click)="adddefault()" id="replace-submit" type="submit">
+        Default
       </button>
       </div>
     </div>
