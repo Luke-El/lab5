@@ -38,4 +38,6 @@ searchbar that got the topic that the user typed in and sent it to the typescrip
 
 Eric: I worked on some frontend and backend. For the frontend, since I was going to be working with the replace portion of the PUT endpoint, I made a dropdown
 list that the user could choose the categories from. Under the list, there was a text box to enter the new category. To the right of the input box, I put a button 
-that would fire the PUT request and replace the category. For the backend, to implement the PUT request, I first created a connection to the collection in Node, then took in both the old and new categories. First, I used await to make sure that the old category was deleted, then used the createImages() function made by Luke to get the images of the new category and put them into the database.
+that would fire the PUT request and replace the category. For the backend, to implement the PUT request, I first created a connection to the collection in Node,
+then took in both the old and new categories. First, I used await to make sure that the old category was deleted, then used the createImages() function made by
+Luke to get the images of the new category and put them into the database.
