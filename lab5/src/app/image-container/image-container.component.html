@@ -8,11 +8,13 @@
 </div>
 
 <div *ngIf="hasContent()" id="images">
-  <img class="image"
+  <div class="image">
+  <img
     *ngFor="let picture of getPics()"
     src="{{ picture.url }}"
     alt="{{ picture.alt }}"
   />
+  </div>
 </div>
 <p *ngIf="isLogin() && !hasContent()" (click)="print()" id="text">{{ text }}</p>
 
