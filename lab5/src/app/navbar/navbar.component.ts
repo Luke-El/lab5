@@ -104,7 +104,7 @@ export class NavbarComponent implements OnInit {
 
   
   adddefault() {
-    let defa: string[] = ['tiger', 'cat', 'dog'];
+    let defa: string[] = ['nature', 'cat', 'dog', 'car'];
     for(var index in defa){ 
       console.log(defa[index]);
       const userId = this.appContentService.userId;
