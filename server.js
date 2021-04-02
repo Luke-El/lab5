@@ -76,8 +76,7 @@ app.post("/users/:userid/images", (req, res) => {
   const catergory = req.body.catergory;
   collection.findOne({ catergory: catergory}, function(err, result) {
     if (err) {console.log("Could not post")};
-    if (result) {console.log("Category already exists!");}
-    else {
+    if (result) {res.status(203).json({ categories: allCatergories });}    else {
       createImages(req.body.catergory, res);
     }
   })
